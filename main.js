@@ -5,7 +5,7 @@ const fetchVideoInfo = require('youtube-info');
 const ffmpeg = require('ffmpeg');
 
 const client = new Discord.Client({autoReconnect: true});
-const discord_token = "NTExODU1NDE3MTEwODIyOTI0.XK-Epg.m1ZxYogTsCdpoLogoswJpbaFycM";
+const discord_token = ""; // discord does not like me uploading my token on the web
 
 
 // not sure what to use from this
