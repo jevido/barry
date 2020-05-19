@@ -9,17 +9,11 @@ const discord_token = ""; // discord does not like me uploading my token on the 
 
 
 // not sure what to use from this
-var queue = [];
-var isPlaying = false;
-var dispatcher = null;
-var voiceChannel = null;
-var textChannel = null;
-var listenConnection = null;
-var listenReceiver = null;
-var listenStreams = new Map();
-var skipReq = 0;
-var skippers = [];
-var listening = false;
+let queue = [];
+let isPlaying = false;
+let dispatcher = null;
+let voiceChannel = null;
+let textChannel = null;
 // /not sure what to use from this
 
 client.login(discord_token);
@@ -201,15 +195,6 @@ function commandPlaylist(member, msg) {
   if (args.length != 0) playlistRequest(args);
 }
 
-function commandStop() {
-  if (listenReceiver) {
-    listening = false;
-    listenReceiver.destroy();
-    listenReceiver = null;
-    textChannel.send("sorry hoor!");
-  }
-}
-
 function commandLeave() {
   listening = false;
   queue = []
@@ -217,15 +202,7 @@ function commandLeave() {
     dispatcher.end();
   }
   dispatcher = null;
-  commandStop();
-  if (listenReceiver) {
-    listenReceiver.destroy();
-    listenReceiver = null;
-  }
-  if (listenConnection) {
-    listenConnection.disconnect();
-    listenConnection = null;
-  }
+  
   if (voiceChannel) {
     voiceChannel.leave();
     voiceChannel = null;
